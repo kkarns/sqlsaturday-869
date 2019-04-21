@@ -9,7 +9,7 @@ Here are links referenced in the presentation:
 * *blog* -[www.kkarnsdba.com](https://www.kkarnsdba.com)
 * *geocommunicator - an implementation of NILS* -[https://navigator.blm.gov/map](https://navigator.blm.gov/map)
 * *Designing Geodatabases: Case Studies in GIS Data Modeling by David Arctur - NILS model details* -[Amazon](https://www.amazon.com/s?k=9781589480216&i=stripbooks&linkCode=qs) 
-* *federal lands data model* - [Image](https://github.com/kkarns/sqlsaturday-869/federal-lands-data-model.png)
+* *federal lands data model* - [Image](https://github.com/kkarns/sqlsaturday-869/blob/master/federal-lands-data-model.png)
 * *AZ webmap* -[http://gis.azland.gov/webapps/parcel/](http://gis.azland.gov/webapps/parcel/)
 * *NM webmap* -[http://www.nmstatelands.org/interactive-maps.aspx](http://www.nmstatelands.org/interactive-maps.aspx)
 * *OGC Methods* -[MSDN link](https://docs.microsoft.com/en-us/sql/t-sql/spatial-geometry/ogc-methods-on-geometry-instances?view=sql-server-2017
