@@ -1,0 +1,14 @@
+-- from 2/21/19
+
+Q:  What does UTM stand for?
+A:  UTM stands for Universal Transverse Mercatur.  One of many coordinate projection systems available for use by for spatial data.  The coordinates are measured in meters, generally meters east of a meridian and north of the equator.  The two measures in meters are also called a  Northing and an Easting.  You can kind of think of the meridian as a section of an orange around the globe.  Arizona uses NAD83 Zone 12 as the meridian and any point along that meridian has an easting of 500,000 increasing to the east and decreasing to the west.  On old topographic maps UTM coordinates are written in little blue letters.
+
+Q:  Who are the data consumers?
+A:  Internally the data is used mostly by lease analysts and field analysts through ArcMap and other GIS applications to make very specialized, detailed maps to study potential leases.  The general public including land abstractors and potential lessees have the ability to browse the data through the webmap.  
+
+-- from 5/4/19
+
+
+
+
+
