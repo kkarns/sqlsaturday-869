@@ -21,7 +21,7 @@ Here are links referenced in the presentation:
 
 ## Link to Presentation
 
-*.pdf* - [Presentation](https://github.com/kkarns/sqlsaturday-869/sqlsaturday-869-statewide-geography-and-spatial-computing-in-sql-server.pdf)
+*.pdf* - [Presentation](https://github.com/kkarns/sqlsaturday-869/blob/master/sqlsaturday-869-statewide-geography-and-spatial-computing-in-sql-server.pdf)
 
 ## Data sources for SQLSaturday Demos
 
