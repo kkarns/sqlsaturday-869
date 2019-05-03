@@ -6,7 +6,14 @@ A:  UTM stands for Universal Transverse Mercatur.  One of many coordinate projec
 Q:  Who are the data consumers?
 A:  Internally the data is used mostly by lease analysts and field analysts through ArcMap and other GIS applications to make very specialized, detailed maps to study potential leases.  The general public including land abstractors and potential lessees have the ability to browse the data through the webmap.  
 
+Q:  Is ArcGIS versioning automatic?  
+A:  No, Versioning won't appear on a spatial table outside of the registration process in ArcGIS Server.
+
+Q:  In the demo query, what is the A166 table?
+A:  The A166 table in the spatial index example query is the ESRI Versioning "adds table" for an oil and gas lease table.  It was the table that had a spatial index that grew to over 250 million leaf nodes.
+
 -- from 5/4/19
+
 
 
 
