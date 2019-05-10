@@ -70,12 +70,15 @@ exec sp_help_spatial_geometry_histogram @tabname = "[ASLDData].[dbo].[ASLD_OG_LE
 --  6 seconds ... balanced since usually 16 per section
 exec sp_help_spatial_geometry_histogram @tabname = "[ASLDData].[dbo].[ASLD_SURFACE_PARCELS]", @colname = 'shape',  @resolution = 64, @xmin = 144206, @ymin = 3466600, @xmax = 685016, @ymax = 4099054, @sample = 100;
 
+-- histogram   index  [min&max for projection(3742)NAD83]    -- (Use me in demos)
+--  n seconds ... balanced since usually 16 per section
+exec sp_help_spatial_geometry_histogram @tabname = "[NMSLOData].[dbo].[SLO_OG_LEASES_D]", @colname = 'shape',  @resolution = 64, @xmin = 144206, @ymin = 3466600, @xmax = 685016, @ymax = 4099054, @sample = 100;
 
 
 -------------------------------------------------------------------------------
 
 -----------------------------------------------------
--- is the spatial index even working?
+-- is the spatial index even working? (Arizona Ridgeway Petroleum - Helium)
 -----------------------------------------------------
 
 -- [CTRL-M] Include actual execution plan
@@ -95,7 +98,7 @@ SELECT
     @point1 = SHAPE 
 FROM [AZBaseData].[dbo].[AZWELLS_CLIPPED_WGS84_3857] 
 WHERE 
-    ID = 'W040000061' -- Well W040000061 – Ridgeway Arizona 22-01X STATE
+    ID = 'W040000061' -- Well W040000061 ï¿½ Ridgeway Arizona 22-01X STATE
 
 -- optional: look at the geometry, and the WKT version of it (in meters)
 -- SELECT @point1, @point1.ToString();
@@ -110,6 +113,41 @@ WHERE
     a.Shape.STDistance(@point1) < 1609   -- 1609 meters = 1 mi.
 ORDER BY Distance
 
+-----------------------------------------------------
+-- is the spatial index even working? (NM Prolific Well - KF STATE COM #002)
+-----------------------------------------------------
+
+-- [CTRL-M] Include actual execution plan
+
+-- optional:  look at the point we're tessellating with
+SELECT shape.ToString(),* FROM [NMBaseData].[dbo].[NM_WELLS_DISTRICT_ALL_WGS84_3857] WHERE API = '30-025-38720'   -- POINT (-11507621.1022 3829466.936999999)
+
+-- optional:  look at the data we're tessellating into
+SELECT shape.ToString(),* FROM [AZBaseData].[dbo].[PLSSSECONDDIVISION] WHERE SECDIVID = 'NM230210S0350E0SN040ASESW'
+
+
+-- define a variable for the geometry to tessellate with, a spatial data value for a prolific well  
+DECLARE @point1 geometry;
+
+-- load the geometry point value for a prolific well into a variable
+SELECT 
+    @point1 = SHAPE 
+FROM [NMBaseData].[dbo].[NM_WELLS_DISTRICT_ALL_WGS84_3857]
+WHERE 
+    API = '30-025-38720' -- Well API = '30-025-38720' prolific well KF STATE COM #002 - CHEVRON U S A INC
+
+-- optional: look at the geometry, and the WKT version of it (in meters)
+-- SELECT @point1, @point1.ToString();
+
+-- find the PLSS subsections within a mile from the national blm dataset 24 million rows, 300M leaf nodes.
+SELECT 
+    a.SHAPE,
+    round(a.Shape.STDistance(@point1),0) Distance,
+    a.SECDIVID
+FROM [AZBaseData].[dbo].[PLSSSECONDDIVISION] a  -- WITH(INDEX(FDO_Shape)) -- shouldn't need index hint 
+WHERE
+    a.Shape.STDistance(@point1) < 1609   -- 1609 meters = 1 mi.
+ORDER BY Distance
 
 
 
